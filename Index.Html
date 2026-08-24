@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova Tutor | The Cinematic AI</title>
+    <!-- Tailwind CSS for sleek, modern styling without extra files -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { background-color: #141414; color: #e5e5e5; font-family: 'Inter', sans-serif; }
+        .netflix-red { color: #E50914; }
+        .bg-netflix { background-color: #E50914; }
+        .glass-panel { background: rgba(20, 20, 20, 0.85); backdrop-filter: blur(12px); }
+        /* Custom scrollbar for that premium feel */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #141414; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #E50914; }
+    </style>
+</head>
+<body class="h-screen flex flex-col overflow-hidden">
+    
+    <!-- Cinematic Header -->
+    <header class="p-5 border-b border-gray-800 flex justify-between items-center glass-panel z-10">
+        <h1 class="text-3xl font-bold uppercase tracking-widest"><span class="netflix-red">Nova</span> Tutor</h1>
+        <div class="text-right">
+            <p class="text-sm text-gray-400 italic tracking-wide">Detective • Storyteller • Scientist</p>
+            <p class="text-xs text-gray-600 mt-1">Uncovering the Universe, Topic by Topic</p>
+        </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <div class="flex-1 flex overflow-hidden">
+        
+        <!-- Sidebar (Subjects & Mysteries) -->
+        <aside class="w-72 border-r border-gray-800 p-5 hidden md:flex flex-col gap-6 overflow-y-auto glass-panel">
+            <div>
+                <h2 class="text-gray-500 uppercase text-xs font-bold tracking-widest mb-3">Active Investigations</h2>
+                <ul class="space-y-2 text-sm">
+                    <li class="cursor-pointer hover:text-white hover:bg-gray-800 p-3 rounded transition flex items-center gap-3">🌌 <span>Physics & Cosmos</span></li>
+                    <li class="cursor-pointer hover:text-white hover:bg-gray-800 p-3 rounded transition flex items-center gap-3">📜 <span>World History & Politics</span></li>
+                    <li class="cursor-pointer hover:text-white hover:bg-gray-800 p-3 rounded transition flex items-center gap-3">🧠 <span>Psychology & Human Nature</span></li>
+                    <li class="cursor-pointer hover:text-white hover:bg-gray-800 p-3 rounded transition flex items-center gap-3">⚙️ <span>Mechanical Engineering</span></li>
+                </ul>
+            </div>
+            
+            <div class="mt-auto">
+                <button id="wow-btn" class="w-full border-2 border-[#E50914] text-[#E50914] hover:bg-[#E50914] hover:text-white py-3 px-4 rounded font-bold transition duration-300 shadow-[0_0_15px_rgba(229,9,20,0.3)] hover:shadow-[0_0_25px_rgba(229,9,20,0.6)]">
+                    ⚡ Trigger "WOW" Moment
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Story/Chat Area -->
+        <main class="flex-1 flex flex-col relative bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]">
+            
+            <div id="chat-box" class="flex-1 p-6 md:p-10 overflow-y-auto space-y-8 pb-32">
+                
+                <!-- AI Initial Message -->
+                <div class="flex items-start gap-4 animate-fade-in">
+                    <div class="w-10 h-10 rounded-full bg-netflix flex items-center justify-center font-bold shadow-lg shadow-red-500/50">AI</div>
+                    <div class="bg-gray-900/90 p-5 rounded-lg rounded-tl-none max-w-3xl border border-gray-700 shadow-2xl">
+                        <p class="text-lg mb-3 font-semibold text-white">Toh, shuru karein aaj ka episode? 🎬</p>
+                        <p class="text-gray-300 mb-3 leading-relaxed">
+                            Main aapka personal AI tutor hoon. Yahan hum sirf formulas nahi ratenge; hum first-principles se mysteries solve karenge. Chahe classical political philosophy ho ya engine ka torque, har cheez ke peeche ek kahani hai.
+                        </p>
+                        <p class="text-sm text-gray-400 mb-4 italic">
+                            Can you guess what happens next?
+                        </p>
+                        <div class="bg-black/50 p-3 rounded border border-gray-800">
+                            <p class="text-xs text-gray-500 font-mono">System check: Dark humor module activated. Brace yourself, because history is written by the victors, but science doesn't care about your feelings.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cinematic Input Area -->
+            <div class="absolute bottom-0 w-full p-4 md:p-6 glass-panel border-t border-gray-800">
+                <form id="chat-form" class="max-w-4xl mx-auto flex gap-3 relative">
+                    <input type="text" id="user-input" autocomplete="off" class="flex-1 bg-gray-900 border border-gray-700 text-white p-4 rounded-lg focus:outline-none focus:border-[#E50914] focus:ring-1 focus:ring-[#E50914] transition shadow-inner" placeholder="Apna agla sawal puche (Enter the mystery to solve)...">
+                    <button type="submit" class="bg-netflix text-white px-8 py-4 rounded-lg font-bold hover:bg-red-700 transition shadow-lg flex items-center gap-2">
+                        Action 🎬
+                    </button>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <!-- Frontend Logic (No backend connected yet) -->
+    <script>
+        const chatForm = document.getElementById('chat-form');
+        const chatBox = document.getElementById('chat-box');
+        const input = document.getElementById('user-input');
+        const wowBtn = document.getElementById('wow-btn');
+
+        function addMessage(text, sender) {
+            const div = document.createElement('div');
+            div.className = `flex items-start gap-4 ${sender === 'user' ? 'flex-row-reverse' : ''} animate-fade-in`;
+            
+            const avatar = `<div class="w-10 h-10 rounded-full flex-shrink-0 ${sender === 'user' ? 'bg-gray-700' : 'bg-netflix shadow-lg shadow-red-500/50'} flex items-center justify-center font-bold text-sm">${sender === 'user' ? 'YOU' : 'AI'}</div>`;
+            
+            const bubble = `<div class="${sender === 'user' ? 'bg-gray-800' : 'bg-gray-900/90'} p-5 rounded-lg ${sender === 'user' ? 'rounded-tr-none' : 'rounded-tl-none'} max-w-3xl border border-gray-700 shadow-xl text-gray-200 leading-relaxed text-sm md:text-base">
+                ${text}
+            </div>`;
+
+            div.innerHTML = sender === 'user' ? bubble + avatar : avatar + bubble;
+            chatBox.appendChild(div);
+            
+            // Smooth scroll to bottom
+            chatBox.scrollTo({ top: chatBox.scrollHeight, behavior: 'smooth' });
+        }
+
+        chatForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const text = input.value.trim();
+            if(!text) return;
+            
+            addMessage(text, 'user');
+            input.value = '';
+
+            // Simulate suspenseful AI typing delay
+            setTimeout(() => {
+                addMessage("🔍 Analysing from first principles... (Wait for it).<br><br><i>[Note: This is the frontend template. API connection baaki hai, par suspense poora hai!]</i>", 'ai');
+            }, 1200);
+        });
+
+        wowBtn.addEventListener('click', () => {
+            const facts = [
+                "⚡ <b>WOW MOMENT:</b> Agar universe ka poora timeline 1 saal mein compress kar diya jaye, toh human history sirf 31st December ke aakhiri 10 seconds mein aati hai. Hum is cosmic movie ke sabse late aane wale plot twist hain!",
+                "⚡ <b>WOW MOMENT:</b> Plate tectonics! Zameen jis par aap abhi khade hain, wo pichle saal se lagbhag utni hi khisak chuki hai jitne tezi se aapke nakhun badhte hain. Zameen bhi aalsi hai, par ruki hui nahi hai."
+            ];
+            const randomFact = facts[Math.floor(Math.random() * facts.length)];
+            addMessage(randomFact, 'ai');
+        });
+    </script>
+</body>
+</html>
