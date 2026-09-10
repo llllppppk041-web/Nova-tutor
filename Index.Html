@@ -1,138 +1,46 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nova Tutor | The Cinematic AI</title>
-    <!-- Tailwind CSS for sleek, modern styling without extra files -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        body { background-color: #141414; color: #e5e5e5; font-family: 'Inter', sans-serif; }
-        .netflix-red { color: #E50914; }
-        .bg-netflix { background-color: #E50914; }
-        .glass-panel { background: rgba(20, 20, 20, 0.85); backdrop-filter: blur(12px); }
-        /* Custom scrollbar for that premium feel */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #141414; }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #E50914; }
-    </style>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nova Tutor — First Principles Learning</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}body{font-family:Inter,sans-serif;background:#070b16;color:#e5e7eb}.glass{background:rgba(15,23,42,.82);backdrop-filter:blur(18px)}.scrollbar::-webkit-scrollbar{width:6px}.scrollbar::-webkit-scrollbar-thumb{background:#334155;border-radius:8px}.bubble{animation:rise .22s ease-out}@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}textarea{resize:none}.hiddenx{display:none!important}
+</style>
 </head>
-<body class="h-screen flex flex-col overflow-hidden">
-    
-    <!-- Cinematic Header -->
-    <header class="p-5 border-b border-gray-800 flex justify-between items-center glass-panel z-10">
-        <h1 class="text-3xl font-bold uppercase tracking-widest"><span class="netflix-red">Nova</span> Tutor</h1>
-        <div class="text-right">
-            <p class="text-sm text-gray-400 italic tracking-wide">Detective • Storyteller • Scientist</p>
-            <p class="text-xs text-gray-600 mt-1">Uncovering the Universe, Topic by Topic</p>
-        </div>
-    </header>
-
-    <!-- Main Workspace -->
-    <div class="flex-1 flex overflow-hidden">
-        
-        <!-- Sidebar (Subjects & Mysteries) -->
-        <aside class="w-72 border-r border-gray-800 p-5 hidden md:flex flex-col gap-6 overflow-y-auto glass-panel">
-            <div>
-                <h2 class="text-gray-500 uppercase text-xs font-bold tracking-widest mb-3">Active Investigations</h2>
-                <ul class="space-y-2 text-sm">
-                    <li class="cursor-pointer hover:text-white hover:bg-gray-800 p-3 rounded transition flex items-center gap-3">🌌 <span>Physics & Cosmos</span></li>
-                    <li class="cursor-pointer hover:text-white hover:bg-gray-800 p-3 rounded transition flex items-center gap-3">📜 <span>World History & Politics</span></li>
-                    <li class="cursor-pointer hover:text-white hover:bg-gray-800 p-3 rounded transition flex items-center gap-3">🧠 <span>Psychology & Human Nature</span></li>
-                    <li class="cursor-pointer hover:text-white hover:bg-gray-800 p-3 rounded transition flex items-center gap-3">⚙️ <span>Mechanical Engineering</span></li>
-                </ul>
-            </div>
-            
-            <div class="mt-auto">
-                <button id="wow-btn" class="w-full border-2 border-[#E50914] text-[#E50914] hover:bg-[#E50914] hover:text-white py-3 px-4 rounded font-bold transition duration-300 shadow-[0_0_15px_rgba(229,9,20,0.3)] hover:shadow-[0_0_25px_rgba(229,9,20,0.6)]">
-                    ⚡ Trigger "WOW" Moment
-                </button>
-            </div>
-        </aside>
-
-        <!-- Main Story/Chat Area -->
-        <main class="flex-1 flex flex-col relative bg-[url('https://www.transparenttextures.com/patterns/stardust.png')]">
-            
-            <div id="chat-box" class="flex-1 p-6 md:p-10 overflow-y-auto space-y-8 pb-32">
-                
-                <!-- AI Initial Message -->
-                <div class="flex items-start gap-4 animate-fade-in">
-                    <div class="w-10 h-10 rounded-full bg-netflix flex items-center justify-center font-bold shadow-lg shadow-red-500/50">AI</div>
-                    <div class="bg-gray-900/90 p-5 rounded-lg rounded-tl-none max-w-3xl border border-gray-700 shadow-2xl">
-                        <p class="text-lg mb-3 font-semibold text-white">Toh, shuru karein aaj ka episode? 🎬</p>
-                        <p class="text-gray-300 mb-3 leading-relaxed">
-                            Main aapka personal AI tutor hoon. Yahan hum sirf formulas nahi ratenge; hum first-principles se mysteries solve karenge. Chahe classical political philosophy ho ya engine ka torque, har cheez ke peeche ek kahani hai.
-                        </p>
-                        <p class="text-sm text-gray-400 mb-4 italic">
-                            Can you guess what happens next?
-                        </p>
-                        <div class="bg-black/50 p-3 rounded border border-gray-800">
-                            <p class="text-xs text-gray-500 font-mono">System check: Dark humor module activated. Brace yourself, because history is written by the victors, but science doesn't care about your feelings.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Cinematic Input Area -->
-            <div class="absolute bottom-0 w-full p-4 md:p-6 glass-panel border-t border-gray-800">
-                <form id="chat-form" class="max-w-4xl mx-auto flex gap-3 relative">
-                    <input type="text" id="user-input" autocomplete="off" class="flex-1 bg-gray-900 border border-gray-700 text-white p-4 rounded-lg focus:outline-none focus:border-[#E50914] focus:ring-1 focus:ring-[#E50914] transition shadow-inner" placeholder="Apna agla sawal puche (Enter the mystery to solve)...">
-                    <button type="submit" class="bg-netflix text-white px-8 py-4 rounded-lg font-bold hover:bg-red-700 transition shadow-lg flex items-center gap-2">
-                        Action 🎬
-                    </button>
-                </form>
-            </div>
-        </main>
-    </div>
-
-    <!-- Frontend Logic (No backend connected yet) -->
-    <script>
-        const chatForm = document.getElementById('chat-form');
-        const chatBox = document.getElementById('chat-box');
-        const input = document.getElementById('user-input');
-        const wowBtn = document.getElementById('wow-btn');
-
-        function addMessage(text, sender) {
-            const div = document.createElement('div');
-            div.className = `flex items-start gap-4 ${sender === 'user' ? 'flex-row-reverse' : ''} animate-fade-in`;
-            
-            const avatar = `<div class="w-10 h-10 rounded-full flex-shrink-0 ${sender === 'user' ? 'bg-gray-700' : 'bg-netflix shadow-lg shadow-red-500/50'} flex items-center justify-center font-bold text-sm">${sender === 'user' ? 'YOU' : 'AI'}</div>`;
-            
-            const bubble = `<div class="${sender === 'user' ? 'bg-gray-800' : 'bg-gray-900/90'} p-5 rounded-lg ${sender === 'user' ? 'rounded-tr-none' : 'rounded-tl-none'} max-w-3xl border border-gray-700 shadow-xl text-gray-200 leading-relaxed text-sm md:text-base">
-                ${text}
-            </div>`;
-
-            div.innerHTML = sender === 'user' ? bubble + avatar : avatar + bubble;
-            chatBox.appendChild(div);
-            
-            // Smooth scroll to bottom
-            chatBox.scrollTo({ top: chatBox.scrollHeight, behavior: 'smooth' });
-        }
-
-        chatForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const text = input.value.trim();
-            if(!text) return;
-            
-            addMessage(text, 'user');
-            input.value = '';
-
-            // Simulate suspenseful AI typing delay
-            setTimeout(() => {
-                addMessage("🔍 Analysing from first principles... (Wait for it).<br><br><i>[Note: This is the frontend template. API connection baaki hai, par suspense poora hai!]</i>", 'ai');
-            }, 1200);
-        });
-
-        wowBtn.addEventListener('click', () => {
-            const facts = [
-                "⚡ <b>WOW MOMENT:</b> Agar universe ka poora timeline 1 saal mein compress kar diya jaye, toh human history sirf 31st December ke aakhiri 10 seconds mein aati hai. Hum is cosmic movie ke sabse late aane wale plot twist hain!",
-                "⚡ <b>WOW MOMENT:</b> Plate tectonics! Zameen jis par aap abhi khade hain, wo pichle saal se lagbhag utni hi khisak chuki hai jitne tezi se aapke nakhun badhte hain. Zameen bhi aalsi hai, par ruki hui nahi hai."
-            ];
-            const randomFact = facts[Math.floor(Math.random() * facts.length)];
-            addMessage(randomFact, 'ai');
-        });
-    </script>
-</body>
-</html>
+<body class="min-h-screen">
+<div class="flex h-screen overflow-hidden">
+<aside id="sidebar" class="glass fixed inset-y-0 left-0 z-30 flex w-72 -translate-x-full flex-col border-r border-slate-800 transition-transform md:relative md:translate-x-0">
+<div class="flex items-center gap-3 border-b border-slate-800 p-5"><div class="grid h-10 w-10 place-items-center rounded-xl bg-indigo-500 text-xl">✦</div><div><h1 class="font-extrabold">Nova Tutor</h1><p class="text-xs text-slate-400">Learn from first principles</p></div></div>
+<div class="flex-1 overflow-y-auto p-4 scrollbar"><p class="mb-3 text-xs font-bold uppercase tracking-widest text-slate-500">Subjects</p><div id="subjects" class="space-y-2"></div></div>
+<div class="border-t border-slate-800 p-4"><button id="settingsBtn" class="w-full rounded-xl border border-slate-700 px-3 py-2 text-sm text-slate-300 hover:bg-slate-800">⚙ Backend settings</button></div>
+</aside>
+<div id="overlay" class="fixed inset-0 z-20 hidden bg-black/60 md:hidden"></div>
+<main class="flex min-w-0 flex-1 flex-col">
+<header class="glass flex items-center justify-between border-b border-slate-800 px-4 py-3 md:px-7"><div class="flex items-center gap-3"><button id="menuBtn" class="rounded-lg p-2 hover:bg-slate-800 md:hidden">☰</button><div><h2 id="subjectTitle" class="font-bold">Physics & Cosmos</h2><p class="text-xs text-slate-500">Concepts • mechanisms • problem solving</p></div></div><div class="flex gap-2"><button id="wowBtn" class="rounded-lg border border-amber-500/30 px-3 py-2 text-sm text-amber-300 hover:bg-amber-500/10">⚡ WOW</button><button id="clearBtn" class="rounded-lg border border-slate-700 px-3 py-2 text-sm text-slate-300 hover:bg-slate-800">Clear</button></div></header>
+<section id="chat" class="scrollbar flex-1 overflow-y-auto px-4 py-6 md:px-[12%]"></section>
+<form id="form" class="border-t border-slate-800 bg-slate-950/70 p-3 md:px-[12%] md:py-5"><div class="flex items-end gap-2 rounded-2xl border border-slate-700 bg-slate-900 p-2 focus-within:border-indigo-500"><textarea id="input" rows="1" maxlength="8000" placeholder="Ask anything. Try: Explain mirrors at quantum level..." class="max-h-40 min-w-0 flex-1 bg-transparent px-3 py-2 text-sm outline-none placeholder:text-slate-500"></textarea><button id="send" class="rounded-xl bg-indigo-600 px-4 py-2.5 font-semibold hover:bg-indigo-500 disabled:cursor-not-allowed disabled:opacity-50">Send</button></div><div class="mt-2 flex justify-between text-xs text-slate-500"><span id="status">Ready</span><span>Enter to send • Shift+Enter for new line</span></div></form>
+</main></div>
+<div id="modal" class="fixed inset-0 z-50 hiddenx grid place-items-center bg-black/70 p-4"><div class="w-full max-w-md rounded-2xl border border-slate-700 bg-slate-900 p-6"><div class="mb-4 flex justify-between"><h3 class="text-lg font-bold">Backend settings</h3><button id="closeModal">✕</button></div><p class="mb-4 text-sm text-slate-400">Enter your deployed backend endpoint. Never put an AI API key in this browser.</p><input id="endpoint" class="mb-4 w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-3 text-sm outline-none focus:border-indigo-500" placeholder="/api/chat"><div class="flex justify-end gap-2"><button id="cancelModal" class="rounded-xl px-4 py-2 text-slate-300">Cancel</button><button id="saveModal" class="rounded-xl bg-indigo-600 px-4 py-2 font-semibold">Save</button></div></div></div>
+<script>
+const subjects=['Physics & Cosmos','Mathematics','Chemistry','Biology','History & Polity','Geography','Coding & AI'];
+const key='nova-tutor-history-v2', endpointKey='nova-tutor-endpoint';
+let subject=localStorage.getItem('nova-tutor-subject')||subjects[0];
+let messages=JSON.parse(localStorage.getItem(key)||'[]');
+const $=id=>document.getElementById(id); const chat=$('chat');
+function escape(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));}
+function renderText(s){return escape(s).replace(/```([\s\S]*?)```/g,'<pre class="my-3 overflow-x-auto rounded-lg bg-black/40 p-3 text-xs"><code>$1</code></pre>').replace(/\n/g,'<br>');}
+function save(){localStorage.setItem(key,JSON.stringify(messages));localStorage.setItem('nova-tutor-subject',subject)}
+function draw(){chat.innerHTML='';if(!messages.length){messages=[{role:'assistant',content:`Namaste! I’m Nova Tutor. I don’t just give answers—I build the chain from basics to advanced.\n\nCurrent subject: ${subject}\n\nAsk me a question, request a diagram, or say “teach from zero”.`}];}messages.forEach(m=>{const mine=m.role==='user';const el=document.createElement('div');el.className='bubble mb-5 flex '+(mine?'justify-end':'justify-start');el.innerHTML=`<div class="max-w-3xl rounded-2xl px-4 py-3 text-sm leading-7 ${mine?'bg-indigo-600 text-white':'border border-slate-800 bg-slate-900/80 text-slate-200'}">${renderText(m.content)}</div>`;chat.appendChild(el)});chat.scrollTop=chat.scrollHeight;save()}
+function drawSubjects(){ $('subjects').innerHTML=subjects.map(s=>`<button data-subject="${escape(s)}" class="w-full rounded-xl px-3 py-2 text-left text-sm ${s===subject?'bg-indigo-600/20 text-indigo-300':'text-slate-400 hover:bg-slate-800 hover:text-slate-200'}">${s}</button>`).join('');$('subjectTitle').textContent=subject}
+async function sendMessage(text){messages.push({role:'user',content:text});draw();$('send').disabled=true;$('input').disabled=true;$('status').textContent='Thinking…';const wait={role:'assistant',content:'⌛ Thinking…'};messages.push(wait);draw();try{const url=localStorage.getItem(endpointKey)||'/api/chat';const history=messages.slice(0,-1);const res=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:text,subject,history})});if(!res.ok)throw new Error(`Backend returned HTTP ${res.status}`);const data=await res.json();const reply=data.reply??data.message??data.content??data.choices?.[0]?.message?.content;if(!reply)throw new Error('Backend response did not contain reply/content');messages[messages.length-1]={role:'assistant',content:String(reply)};}catch(e){messages[messages.length-1]={role:'assistant',content:`⚠️ ${e.message}\n\nThe frontend is working, but the AI backend is not connected yet. Deploy a POST endpoint at /api/chat or set its URL in Backend settings. Keep provider API keys on the server only.`};}finally{$('send').disabled=false;$('input').disabled=false;$('status').textContent='Ready';draw();$('input').focus()}}
+$('form').addEventListener('submit',e=>{e.preventDefault();const text=$('input').value.trim();if(text){$('input').value='';sendMessage(text)}});
+$('input').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();$('form').requestSubmit()}});
+$('subjects').addEventListener('click',e=>{const b=e.target.closest('[data-subject]');if(!b)return;subject=b.dataset.subject;drawSubjects();$('sidebar').classList.add('-translate-x-full');$('overlay').classList.add('hidden')});
+$('clearBtn').onclick=()=>{if(confirm('Clear this chat?')){messages=[];draw()}};
+$('wowBtn').onclick=()=>sendMessage('Give me one surprising, scientifically accurate WOW fact and explain why it is true.');
+$('menuBtn').onclick=()=>{$('sidebar').classList.remove('-translate-x-full');$('overlay').classList.remove('hidden')};$('overlay').onclick=()=>{$('sidebar').classList.add('-translate-x-full');$('overlay').classList.add('hidden')};
+$('settingsBtn').onclick=()=>{$('endpoint').value=localStorage.getItem(endpointKey)||'/api/chat';$('modal').classList.remove('hiddenx')};$('closeModal').onclick=$('cancelModal').onclick=()=>$('modal').classList.add('hiddenx');$('saveModal').onclick=()=>{const v=$('endpoint').value.trim();if(!v)return alert('Enter an endpoint');if(!v.startsWith('/')&&!v.startsWith('https://'))return alert('Use a relative path or HTTPS URL');localStorage.setItem(endpointKey,v);$('modal').classList.add('hiddenx');$('status').textContent='Endpoint saved'};
+drawSubjects();draw();
+</script></body></html>
