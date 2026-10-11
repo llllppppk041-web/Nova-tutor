@@ -1,0 +1,33 @@
+# Secrets and local environment files
+.env
+.env.*
+!.env.example
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Python and notebook caches
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# Kaggle credentials
+kaggle.json
+access_token
+.kaggle/
+
+# Local model outputs and large generated artifacts
+/checkpoints/
+/artifacts/
+*.safetensors
+*.gguf
+*.pt
+*.pth
+*.ckpt
+
+# Operating system files
+.DS_Store
+Thumbs.db
